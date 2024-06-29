@@ -1,0 +1,18 @@
+{
+	"editor.tabSize": 2,
+	"files.associations": {
+		"ostream": "cpp",
+		"iostream": "cpp"
+	},
+	"cSpell.words": [
+		"defination",
+		"vecti",
+		"vectpi",
+		"vects"
+	],
+	"window.zoomLevel": 1,
+	"files.autoSave": "afterDelay",
+	"editor.formatOnSave": true,
+	"editor.formatOnSaveMode": "modifications",
+	"files.autoSaveDelay": 0
+}

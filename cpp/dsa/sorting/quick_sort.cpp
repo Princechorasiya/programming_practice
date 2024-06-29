@@ -1,0 +1,1 @@
+//learn the way of partition the element 0-l-1 lower that parition l- h-1 greater than equal to parition and h to n-1 unexplored region 

@@ -1,0 +1,158 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class node
+{
+public:
+  int val;
+  node *next;
+  node()
+  {
+    val = 0;
+    next = nullptr;
+  }
+  node(int val)
+  {
+    this->val = val;
+    next = nullptr;
+  }
+};
+class linkedList
+{
+public:
+  node *head;
+  node *tail;
+  linkedList()
+  // dont forget to initalise this
+  {
+    head = nullptr;
+    tail = nullptr;
+  }
+
+  void createLinkedList()
+  {
+    int t;
+    do
+    {
+
+      cin >> t;
+      if (t == -1)
+        break;
+      insertTail(t);
+    } while (t != -1);
+  }
+  void insertTail(int val)
+  {
+    node *new_node = new node(val);
+
+    if (tail == nullptr)
+    {
+      head = tail = new_node;
+      return;
+    }
+    tail->next = new_node;
+    tail = new_node;
+  }
+
+  void print()
+  {
+    node *temp = head;
+    while (temp != nullptr)
+    {
+      cout << temp->val << " ";
+      temp = temp->next;
+    }
+    cout << endl;
+  }
+};
+
+void reverse(node *&head)
+{
+  node *prev = nullptr;
+  node *curr = head;
+  node *forward;
+  while (curr != nullptr)
+  {
+    forward = curr->next;
+    curr->next = prev;
+    prev = curr;
+    curr = forward;
+  }
+  head = prev;
+}
+
+void reverseRecursive(node *&head, node *curr, node *prev)
+{
+  if (curr == nullptr)
+  {
+    head = prev;
+    return;
+  }
+  node *forward = curr->next;
+  curr->next = prev;
+
+  reverseRecursive(head, forward, curr);
+}
+
+void reverseWrapper(node *&head)
+{
+  node *curr = head;
+  reverseRecursive(head, curr, nullptr);
+}
+// wrtie your functions here
+int main()
+{
+  linkedList ll;
+  ll.createLinkedList();
+  ll.print();
+
+  // reverse(ll.head);
+  // ll.print();
+
+  reverseWrapper(ll.head);
+  ll.print();
+}
+// 1 2 3 4 -1
+
+// another recursive approach
+
+node *reverse(node *head)
+{
+  // base case
+  if (head == nullptr || head->next == nullptr)
+  {
+    return head;
+  }
+  node *revHead = reverse(head->next);
+  // now we go adn insert the element at this choti list  how will you reach the tail
+  // the tial is head->next for this this head
+  head->next->next = head;
+  head->next = nullptr;
+  return revHead;
+}
+void reverseWrapper(node *&head)
+{
+  //
+  head = reverse(head);
+}
+
+// find the middle element of hte linked list
+void middleList(node *head)
+{
+  node *fast = head;
+  node *slow = head;
+  while (fast != nullptr)
+  {
+    // if (fast != nullptr)
+    // {
+    fast = fast->next;
+    if (fast != nullptr)
+    {
+      fast = fast->next;
+      // }
+      slow = slow->next;
+    }
+  }
+
+  cout << slow->val << endl;
+}
